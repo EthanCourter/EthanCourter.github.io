@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbfSBInJ4BG9Q9iqeQKuBX5sKsYt-qMsU"></script>
+    <meta charset="utf-8">
+    <title>Using/ adding a map location to your website.</title>
+    <style>
+    #mapcanvas {
+      height: 500px;
+      background-color: blue;
+    }
+    </style>
+  </head>
+  <body>
+<h1>Your Location</h1>
+<div id="mapcanvas"></div>
+<script>
+var map;
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition( positionCallback)
+} else {
+  console.log("Could not find geolocation protocol");
+}
+function positionCallback( position ){
+  var location = new google.maps.LatLng( position.coords.latitude, position.coords.longitude);
+  var mapDiv = document.getElementById("mapcanvas");
+  var mapOptions = {
+      zoom: 15,
+      center: location,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map( mapDiv, mapOptions );
+}
+</script>
+  </body>
+</html>
